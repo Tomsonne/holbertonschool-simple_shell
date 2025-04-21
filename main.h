@@ -14,5 +14,10 @@ int simple_shell(char *program_name);
 char **split_line(char *line);
 int execute_command(char **args, char *program_name);
 void shell_prompt(void);
+int _setenv(const char *nom, const char *valeur, int ecraser);
+int _unsetenv(const char *nom);
+void executer_env(char **arguments);
+void executer_setenv(char **arguments);
+void executer_unsetenv(char **arguments);
 
 #endif
