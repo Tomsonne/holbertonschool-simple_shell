@@ -1,7 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-/* Librairies système */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,7 +8,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* Fonctions du shell */
+extern char **environ;
+
 int simple_shell(char *program_name);
 char **split_line(char *line);
 int execute_command(char **args, char *program_name);

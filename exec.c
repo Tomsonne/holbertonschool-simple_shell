@@ -1,7 +1,5 @@
 #include "main.h"
 
-extern char **environ;
-
 /**
  * execute_command - exécute une commande
  * @args: tableau contenant la commande
