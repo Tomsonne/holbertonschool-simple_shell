@@ -1,18 +1,21 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -pedantic
-SRC = main.c utils.c
+CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu89
+SRC = main.c shell.c split.c exec.c utils.c
 OBJ = $(SRC:.c=.o)
-NAME = mini_shell
+TARGET = hsh
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) -o $(TARGET)
+
+%.o: %.c main.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f *.o
+	rm -f $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(TARGET)
 
 re: fclean all
