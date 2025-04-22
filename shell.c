@@ -40,10 +40,6 @@ int simple_shell(char *program_name)
 			free(args);
 			continue;
 		}
-		else if (strcmp(args[0], "setenv") == 0)
-			executer_setenv(args);
-		else if (strcmp(args[0], "unsetenv") == 0)
-			executer_unsetenv(args);
 		else
 		execute_command(args, program_name);
 		free(args);
