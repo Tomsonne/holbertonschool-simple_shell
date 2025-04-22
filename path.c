@@ -16,7 +16,7 @@ char *find_in_path(char *cmd)
 	size_t len;
 
 	if (!path || strchr(cmd, '/'))
-		return (strdup(cmd));  /* déjà un chemin absolu */
+		return (strdup(cmd)); 
 
 	path_copy = strdup(path);
 	if (!path_copy)

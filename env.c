@@ -9,13 +9,13 @@
  */
 int _setenv(const char *nom, const char *valeur, int ecraser)
 {
-if (!nom || !valeur)
-return (-1);
+	if (!nom || !valeur)
+		return (-1);
 
-if (!ecraser && getenv(nom))
-return (0);
+	if (!ecraser && getenv(nom))
+		return (0);
 
-return (setenv(nom, valeur, 1));
+	return (setenv(nom, valeur, 1));
 }
 
 /**
@@ -25,10 +25,10 @@ return (setenv(nom, valeur, 1));
  */
 int _unsetenv(const char *nom)
 {
-if (!nom)
-return (-1);
+	if (!nom)
+		return (-1);
 
-return (unsetenv(nom));
+	return (unsetenv(nom));
 }
 
 /**
@@ -37,8 +37,9 @@ return (unsetenv(nom));
 void executer_env(void)
 {
 	int i;
-for (i = 0; environ[i]; i++)
-printf("%s\n", environ[i]);
+
+	for (i = 0; environ[i]; i++)
+		printf("%s\n", environ[i]);
 }
 
 /**
@@ -47,13 +48,13 @@ printf("%s\n", environ[i]);
  */
 void executer_setenv(char **arguments)
 {
-if (arguments[1] && arguments[2])
-{
-if (_setenv(arguments[1], arguments[2], 1) != 0)
-perror("Erreur setenv");
-}
-else
-fprintf(stderr, "Usage : setenv NOM VALEUR\n");
+	if (arguments[1] && arguments[2])
+	{
+		if (_setenv(arguments[1], arguments[2], 1) != 0)
+			perror("Erreur setenv");
+	}
+	else
+	fprintf(stderr, "Usage : setenv NOM VALEUR\n");
 }
 
 /**
@@ -62,11 +63,11 @@ fprintf(stderr, "Usage : setenv NOM VALEUR\n");
  */
 void executer_unsetenv(char **arguments)
 {
-if (arguments[1])
-{
-if (_unsetenv(arguments[1]) != 0)
-perror("Erreur unsetenv");
-}
-else
-fprintf(stderr, "Usage : unsetenv NOM\n");
+	if (arguments[1])
+	{
+		if (_unsetenv(arguments[1]) != 0)
+			perror("Erreur unsetenv");
+	}
+	else
+	fprintf(stderr, "Usage : unsetenv NOM\n");
 }

@@ -14,9 +14,11 @@ int execute_command(char **args, char *program_name)
 	int status;
 	char *cmd_path = find_in_path(args[0]);
 
-	if (!cmd_path)
+	if (!cmd_path || access(cmd_path, X_OK) != 0)
 	{
 		fprintf(stderr, "%s: %s: not found\n", program_name, args[0]);
+		if (cmd_path)
+			free(cmd_path);
 		return (-1);
 	}
 
