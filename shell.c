@@ -30,10 +30,7 @@ int simple_shell(char *program_name)
 			continue;
 		}
 		if (strcmp(args[0], "exit") == 0)
-		{
-			free(args);
-			break;
-		}
+			executer_exit(args, line);
 		else if (strcmp(args[0], "env") == 0)
 		{
 			executer_env();
