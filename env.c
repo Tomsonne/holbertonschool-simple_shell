@@ -70,3 +70,15 @@ else
 fprintf(stderr, "Usage : unsetenv NOM\n");
 }
 
+/**
+ * executer_exit - Quitte proprement le shell
+ * @args: tableau d'arguments à libérer
+ * @line: ligne d'entrée à libérer
+ */
+
+int executer_exit(char **args, char *line)
+{
+    free(args);
+    free(line);
+    exit(0);
+}
