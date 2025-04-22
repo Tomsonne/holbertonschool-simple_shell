@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include<stdlib.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,7 +10,7 @@
 #include <sys/wait.h>
 
 extern char **environ;
-
+char *find_in_path(char *cmd);
 int simple_shell(char *program_name);
 char **split_line(char *line);
 int execute_command(char **args, char *program_name);

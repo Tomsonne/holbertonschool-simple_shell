@@ -1,20 +1,22 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+#include <string.h>
+
 #include "main.h"
 
-/**
- * execute_command - exécute une commande
- * @args: tableau contenant la commande
- * @program_name: nom du programme (argv[0])
- *
- * Return: 0 si OK, -1 sinon
- */
+extern char **environ;
+
 int execute_command(char **args, char *program_name)
 {
 	pid_t pid;
 	int status;
+	char *cmd_path = find_in_path(args[0]);
 
-	if (access(args[0], X_OK) != 0)
+	if (!cmd_path)
 	{
-		fprintf(stderr, "%s: 1: %s: not found\n", program_name, args[0]);
+		fprintf(stderr, "%s: %s: not found\n", program_name, args[0]);
 		return (-1);
 	}
 
@@ -22,18 +24,22 @@ int execute_command(char **args, char *program_name)
 	if (pid == -1)
 	{
 		perror("fork failed");
+		free(cmd_path);
 		return (-1);
 	}
 
 	if (pid == 0)
 	{
-		execve(args[0], args, environ);
-		fprintf(stderr, "%s: 1: %s: not found\n", program_name, args[0]);
+		execve(cmd_path, args, environ);
+		fprintf(stderr, "%s: %s: not found\n", program_name, args[0]);
+		free(cmd_path);
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
 		wait(&status);
 	}
+
+	free(cmd_path);
 	return (0);
 }

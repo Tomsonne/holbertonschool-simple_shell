@@ -36,7 +36,8 @@ return (unsetenv(nom));
  */
 void executer_env(void)
 {
-for (int i = 0; environ[i]; i++)
+	int i;
+for (i = 0; environ[i]; i++)
 printf("%s\n", environ[i]);
 }
 
