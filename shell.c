@@ -35,7 +35,11 @@ int simple_shell(char *program_name)
 			break;
 		}
 		else if (strcmp(args[0], "env") == 0)
+		{
 			executer_env();
+			free(args);
+			continue;
+		}
 		else if (strcmp(args[0], "setenv") == 0)
 			executer_setenv(args);
 		else if (strcmp(args[0], "unsetenv") == 0)
