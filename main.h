@@ -20,6 +20,4 @@ void executer_env(void);
 void executer_setenv(char **arguments);
 void executer_unsetenv(char **arguments);
 
-int executer_exit(char **args, char *line);
-
 #endif
