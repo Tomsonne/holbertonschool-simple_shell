@@ -35,13 +35,14 @@ int simple_shell(char *program_name)
 			free(line);
 			exit(0);
 		}
-
+/** 
 		else if (strcmp(args[0], "env") == 0)
 		{
 			executer_env();
 			free(args);
 			continue;
 		}
+*/
 		else
 		execute_command(args, program_name);
 		free(args);
