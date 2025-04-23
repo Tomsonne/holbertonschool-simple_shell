@@ -19,7 +19,7 @@ int execute_command(char **args, char *program_name)
 		fprintf(stderr, "%s: %s: not found\n", program_name, args[0]);
 		if (cmd_path)
 			free(cmd_path);
-		return (-1);
+		return (127);
 	}
 
 	pid = fork();
@@ -27,7 +27,7 @@ int execute_command(char **args, char *program_name)
 	{
 		perror("fork failed");
 		free(cmd_path);
-		return (-1);
+		return (1);
 	}
 
 	if (pid == 0)
@@ -35,7 +35,7 @@ int execute_command(char **args, char *program_name)
 		execve(cmd_path, args, environ);
 		fprintf(stderr, "%s: %s: not found\n", program_name, args[0]);
 		free(cmd_path);
-		exit(EXIT_FAILURE);
+		exit(127);
 	}
 	else
 	{
@@ -43,5 +43,9 @@ int execute_command(char **args, char *program_name)
 	}
 
 	free(cmd_path);
-	return (0);
+
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	else
+		return (1);
 }
