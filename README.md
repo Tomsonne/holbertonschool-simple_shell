@@ -107,7 +107,7 @@ Hello World
 
 ## 📙 Man Page
 
-Si tu ajoutes une page man, elle est consultable avec :
+Une page de manuel est disponible pour la fonction shell.c Pour la consulter, exécutez la commande :
 ```bash
 man ./man_1_simple_shell
 ```
