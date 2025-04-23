@@ -8,11 +8,11 @@
 
 extern char **environ;
 
-int execute_command(char **args, char *program_name)
+int executer_commande(char **args, char *program_name)
 {
 	pid_t pid;
 	int status;
-	char *cmd_path = find_in_path(args[0]);
+	char *cmd_path = trouver_path(args[0]);
 
 	if (!cmd_path || access(cmd_path, X_OK) != 0)
 	{

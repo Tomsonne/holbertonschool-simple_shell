@@ -8,7 +8,7 @@
  */
 int simple_shell(char *program_name)
 {
-	char *line = NULL;
+	char *ligne = NULL;
 	size_t len = 0;
 	char **args;
 	int interactive = isatty(STDIN_FILENO);
@@ -17,13 +17,13 @@ int simple_shell(char *program_name)
 	{
 		if (interactive)
 			shell_prompt();
-		if (getline(&line, &len, stdin) == -1)
+		if (getline(&ligne, &len, stdin) == -1)
 		{
 			if (interactive)
 				write(1, "\n", 1);
 			break;
 		}
-		args = split_line(line);
+		args = decouper_ligne(ligne);
 		if (!args || !args[0])
 		{
 			free(args);
@@ -32,7 +32,7 @@ int simple_shell(char *program_name)
 		if (strcmp(args[0], "exit") == 0)
 		{
 			free(args);
-			free(line);
+			free(ligne);
 			exit(0);
 		}
 
@@ -44,9 +44,9 @@ int simple_shell(char *program_name)
 		}
 
 		else
-		execute_command(args, program_name);
+		executer_commande(args, program_name);
 		free(args);
 	}
-	free(line);
+	free(ligne);
 	return (0);
 }

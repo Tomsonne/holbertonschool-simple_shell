@@ -10,10 +10,10 @@
 #include <sys/wait.h>
 
 extern char **environ;
-char *find_in_path(char *cmd);
+char *trouver_path(char *cmd);
 int simple_shell(char *program_name);
-char **split_line(char *line);
-int execute_command(char **args, char *program_name);
+char **decouper_ligne(char *line);
+int executer_commande(char **args, char *program_name);
 void shell_prompt(void);
 void executer_env(void);
 char *_getenv(const char *name);

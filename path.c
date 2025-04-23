@@ -5,42 +5,42 @@
 #include "main.h"
 
 /**
- * find_in_path - cherche une commande dans le PATH
+ * trouver_path - cherche une commande dans le PATH
  * @cmd: nom de la commande
  * Return: chemin complet (à free) si trouvé, NULL sinon
  */
-char *find_in_path(char *cmd)
+char *trouver_path(char *cmd)
 {
 	char *path = _getenv("PATH");
-	char *dir, *path_copy, *full_path;
+	char *rep, *copie_path, *path_entier;
 	size_t len;
 
 	if (!path || strchr(cmd, '/'))
 		return (strdup(cmd)); 
 
-	path_copy = strdup(path);
-	if (!path_copy)
+	copie_path = strdup(path);
+	if (!copie_path)
 		return (NULL);
 
-	dir = strtok(path_copy, ":");
-	while (dir)
+	rep = strtok(copie_path, ":");
+	while (rep)
 	{
-		len = strlen(dir) + strlen(cmd) + 2;
-		full_path = malloc(len);
-		if (!full_path)
+		len = strlen(rep) + strlen(cmd) + 2;
+		path_entier = malloc(len);
+		if (!path_entier)
 		{
-			free(path_copy);
+			free(copie_path);
 			return (NULL);
 		}
-		snprintf(full_path, len, "%s/%s", dir, cmd);
-		if (access(full_path, X_OK) == 0)
+		snprintf(path_entier, len, "%s/%s", rep, cmd);
+		if (access(path_entier, X_OK) == 0)
 		{
-			free(path_copy);
-			return full_path;
+			free(copie_path);
+			return path_entier;
 		}
-		free(full_path);
-		dir = strtok(NULL, ":");
+		free(path_entier);
+		rep = strtok(NULL, ":");
 	}
-	free(path_copy);
+	free(copie_path);
 	return (NULL);
 }

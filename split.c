@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * split_line - découpe une ligne de commande en mots
+ * decouper_ligne - découpe une ligne de commande en mots
  * @line: la ligne entrée par l'utilisateur
  *
  * Return: tableau de mots terminé par NULL
  */
-char **split_line(char *line)
+char **decouper_ligne(char *line)
 {
 	char **tokens = malloc(64 * sizeof(char *));
 	char *token;
