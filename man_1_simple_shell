@@ -1,0 +1,73 @@
+.TH simple_shell 1 "avril 2025" "Version 1.0" "Shell Manuel"
+.SH NOM
+simple_shell \- shell Unix minimaliste en C
+
+.SH SYNOPSIS
+.B ./hsh
+
+.SH DESCRIPTION
+.B simple_shell
+est une implémentation simple d'un shell Unix développé dans le cadre du programme Holberton School.
+
+Ce shell permet d'exécuter des commandes en mode interactif ou non-interactif. Il utilise les appels systèmes
+fork, execve, wait et accède aux variables d'environnement pour rechercher les commandes à exécuter via la variable PATH.
+
+.SH MODES DE FONCTIONNEMENT
+.TP
+.B Mode interactif
+Affiche un prompt (#cisfun$) et attend une commande de l'utilisateur.
+
+.TP
+.B Mode non-interactif
+Lit les commandes depuis l'entrée standard (par ex. via un pipe ou une redirection).
+
+.SH COMMANDES INTERNES
+.TP
+.B exit
+Quitte le shell.
+
+.TP
+.B env
+Affiche toutes les variables d'environnement actuelles.
+
+.TP
+.B setenv NOM VALEUR
+Ajoute ou modifie une variable d'environnement.
+
+.TP
+.B unsetenv NOM
+Supprime une variable d'environnement.
+
+.SH EXEMPLES
+.TP
+Lancer le shell :
+.B ./hsh
+
+.TP
+Exécuter une commande :
+#cisfun$ ls -l
+
+.TP
+Utiliser une commande interne :
+#cisfun$ env
+
+.SH FICHIERS
+.TP
+.I ./hsh
+Exécutable principal du shell.
+
+.SH AUTEURS
+Haggui RAZAFIMAITSO <https://github.com/hagguishel>  
+Thomas ROUSSEAU <https://github.com/Tomsonne>
+
+.SH LICENCE
+Distribué sous licence MIT.
+
+.SH VOIR AUSSI
+.BR sh(1),
+.BR bash(1),
+.BR execve(2),
+.BR fork(2),
+.BR wait(2),
+.BR getenv(3),
+.BR environ(7)
