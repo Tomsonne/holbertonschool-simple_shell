@@ -48,5 +48,7 @@ int simple_shell(char *program_name)
 		free(args);
 	}
 	free(line);
+	printf("Appuie sur Entrée pour vérifier les fuites mémoire...\n");
+	getchar();
 	return (0);
 }
