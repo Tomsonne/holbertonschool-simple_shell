@@ -11,7 +11,7 @@
  */
 char *find_in_path(char *cmd)
 {
-	char *path = getenv("PATH");
+	char *path = _getenv("PATH");
 	char *dir, *path_copy, *full_path;
 	size_t len;
 

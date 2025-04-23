@@ -16,6 +16,8 @@ char **split_line(char *line);
 int execute_command(char **args, char *program_name);
 void shell_prompt(void);
 void executer_env(void);
+char *_getenv(const char *name);
+
 
 
 /** 

@@ -11,13 +11,13 @@
 
 int _setenv(const char *nom, const char *valeur, int ecraser)
 {
-    if (!nom || !valeur)
-        return (-1);
+if (!nom || !valeur)
+	return (-1);
 
-    if (!ecraser && getenv(nom))
-        return (0);
+if (!ecraser && _getenv(nom))
+	return (0);
 
-    return (setenv(nom, valeur, 1));
+return (setenv(nom, valeur, 1));
 }
 
 /**
@@ -27,10 +27,10 @@ int _setenv(const char *nom, const char *valeur, int ecraser)
  */
 int _unsetenv(const char *nom)
 {
-    if (!nom)
-        return (-1);
+if (!nom)
+	return (-1);
 
-    return (unsetenv(nom));
+return (unsetenv(nom));
 }
 
 /**
@@ -38,10 +38,10 @@ int _unsetenv(const char *nom)
  */
 void executer_env(void)
 {
-    int i;
+int i;
 
-    for (i = 0; environ[i]; i++)
-        printf("%s\n", environ[i]);
+for (i = 0; environ[i]; i++)
+	printf("%s\n", environ[i]);
 }
 
 /**
@@ -50,13 +50,13 @@ void executer_env(void)
  */
 void executer_setenv(char **arguments)
 {
-    if (arguments[1] && arguments[2])
-    {
-        if (_setenv(arguments[1], arguments[2], 1) != 0)
-            perror("Erreur setenv");
-    }
-    else
-    fprintf(stderr, "Usage : setenv NOM VALEUR\n");
+if (arguments[1] && arguments[2])
+{
+	if (_setenv(arguments[1], arguments[2], 1) != 0)
+		perror("Erreur setenv");
+}
+else
+fprintf(stderr, "Usage : setenv NOM VALEUR\n");
 }
 
 /**
@@ -65,11 +65,36 @@ void executer_setenv(char **arguments)
  */
 void executer_unsetenv(char **arguments)
 {
-    if (arguments[1])
-    {
-        if (_unsetenv(arguments[1]) != 0)
-            perror("Erreur unsetenv");
-    }
-    else
-    fprintf(stderr, "Usage : unsetenv NOM\n");
+if (arguments[1])
+{
+	if (_unsetenv(arguments[1]) != 0)
+		perror("Erreur unsetenv");
 }
+else
+fprintf(stderr, "Usage : unsetenv NOM\n");
+}
+
+/**
+ * _getenv - Recherche une variable d'environnement manuellement
+ * @name: Le nom de la variable recherchée
+ *
+ * Return: Un pointeur vers la valeur associée, ou NULL si pas trouvée.
+ */
+char *_getenv(const char *name)
+{
+int i;
+size_t len;
+
+if (!name || !*name)
+	return (NULL);
+
+len = strlen(name);
+
+for (i = 0; environ[i]; i++)
+{
+	if (strncmp(environ[i], name, len) == 0 && environ[i][len] == '=')
+		return (&environ[i][len + 1]);
+}
+return (NULL);
+}
+
