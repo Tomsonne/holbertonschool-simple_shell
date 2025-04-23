@@ -1,5 +1,7 @@
 #include "main.h"
 
+void executer_env(void);
+
 /**
  * simple_shell - boucle principale du shell
  * @program_name: nom du programme (argv[0])
@@ -42,6 +44,7 @@ int simple_shell(char *program_name)
 			free(args);
 			continue;
 		}
+
 		else
 		execute_command(args, program_name);
 		free(args);

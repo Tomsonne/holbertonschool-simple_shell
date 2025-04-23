@@ -41,6 +41,6 @@ char *find_in_path(char *cmd)
 		free(full_path);
 		dir = strtok(NULL, ":");
 	}
-	free(path_copy);
+	//free(path_copy);
 	return (NULL);
 }
