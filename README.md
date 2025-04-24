@@ -120,6 +120,10 @@ man ./man_1_simple_shell
 ```bash
 echo "ls -l" | ./hsh
 ```
+### Flowchart
+```bash
+
+```
 
 ### Test mémoire avec Valgrind
 ```bash
