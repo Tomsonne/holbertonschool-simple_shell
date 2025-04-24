@@ -18,14 +18,4 @@ void shell_prompt(void);
 void executer_env(void);
 char *_getenv(const char *name);
 
-
-
-/** 
- * int _setenv(const char *nom, const char *valeur, int ecraser);
-int _unsetenv(const char *nom);
- * 
-void executer_setenv(char **arguments);
-void executer_unsetenv(char **arguments);*/
-
-
 #endif
