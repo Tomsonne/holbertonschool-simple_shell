@@ -121,9 +121,11 @@ man ./man_1_simple_shell
 echo "ls -l" | ./hsh
 ```
 ### Flowchart
-```bash
 
-```
+<div align="center">
+  <img src="flowchart_final.drawio.png" alt="Flowchart du Shell" width="400"/>
+</div>
+
 
 ### Test mémoire avec Valgrind
 ```bash
